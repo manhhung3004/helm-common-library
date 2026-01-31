@@ -1,0 +1,11 @@
+apiVersion: v2
+name: test-server-a
+description: A Helm chart for test-server-a
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+  - name: common-lib
+    version: "0.1.8"
+    repository: "file://../common-lib"

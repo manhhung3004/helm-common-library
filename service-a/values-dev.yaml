@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: latest
+
+fullnameOverride: "service-a-dev"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  hosts:
+    - host: service-a-dev.local
+      paths:
+        - path: /
+          pathType: Prefix

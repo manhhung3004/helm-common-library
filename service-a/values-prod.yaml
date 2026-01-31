@@ -1,0 +1,39 @@
+replicaCount: 3
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: latest
+
+fullnameOverride: "service-a-prod"
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  hosts:
+    - host: service-a.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: service-a-tls
+      hosts:
+        - service-a.example.com
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

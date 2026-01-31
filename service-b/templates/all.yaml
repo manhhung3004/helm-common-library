@@ -1,0 +1,7 @@
+{{ include "lib.deployment" . }}
+---
+{{ include "lib.service" . }}
+---
+{{- if and .Values.ingress .Values.ingress.enabled }}
+{{ include "lib.ingress" . }}
+{{- end }}
